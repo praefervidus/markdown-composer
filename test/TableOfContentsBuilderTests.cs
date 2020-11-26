@@ -3,7 +3,7 @@ using Xunit;
 
 namespace markdown_composer.Tests
 {
-    public class TableOfContentsBuilderTest
+    public class TableOfContentsBuilderTests
     {
         [Fact]
         public void Test1()
