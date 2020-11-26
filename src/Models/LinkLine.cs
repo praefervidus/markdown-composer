@@ -25,7 +25,7 @@ namespace markdown_composer.Models
             try
             {
                 var builder = new StringBuilder();
-                for(int i = 0; i < _level; ++i){ builder.Append('#'); }
+                for(int i = 0; i <= _level; ++i){ builder.Append('#'); }
                 builder.Append($" {HeadingName}\n");
 
                 using (var fs = new FileStream(_link, FileMode.Open, FileAccess.Read))
