@@ -1,15 +1,18 @@
 ﻿using System;
 using System.IO;
+using markdown_composer.Models;
 
 namespace markdown_composer
 {
     internal static class Program
     {
         public static readonly string ReferenceFileName = "SUMMARY.md";
+        public static readonly string DefaultWritePath = "composition.md";
 
         private static void ComposeGivenRootFolder(string rootFolder)
         {
-            // TODO: run for a given valid directory
+            var builder = new CompositionBuilder($"{rootFolder}/{ReferenceFileName}");
+            // TODO: write output from builder to the output file
         }
         private static void Main(string[] args) // args[0] = project root folder
         {
