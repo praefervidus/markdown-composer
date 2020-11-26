@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using markdown_composer.Models;
 
 namespace markdown_composer
@@ -8,10 +9,14 @@ namespace markdown_composer
     {
         public static readonly string ReferenceFileName = "SUMMARY.md";
         public static readonly string DefaultWritePath = "composition.md";
+        public static readonly string ShouldMakeTocOption = "--toc";
 
-        private static void ComposeGivenRootFolder(string rootFolder)
+        private static void ComposeGivenRootFolder(string rootFolder, bool makeToc = false)
         {
-            var builder = new CompositionBuilder($"{rootFolder}/{ReferenceFileName}");
+            var textOutput = new CompositionBuilder(makeToc)
+                .FromReferenceFile($"{rootFolder}/{ReferenceFileName}")
+                .Composition
+                .GetMarkdownString();
             // TODO: write output from builder to the output file
         }
         private static void Main(string[] args) // args[0] = project root folder
@@ -22,7 +27,7 @@ namespace markdown_composer
                 {
                     if(File.Exists($"{args[0]}/{ReferenceFileName}"))
                     {
-                        ComposeGivenRootFolder(args[0]); // compose on given root folder
+                        ComposeGivenRootFolder(args[0], args.Contains(ShouldMakeTocOption)); // compose on given root folder
                     }
                     else
                     {
