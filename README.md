@@ -30,6 +30,7 @@ Example File Tree:
     - chapter1.md
     - chapter2.md
   - part2/
+    - intro.md
     - chapter1.md
     - chapter2.md
   - epilogue.md
@@ -41,12 +42,12 @@ Example Project Root SUMMARY.md
 When run with the --toc option, Markdown Composer will generate a Table of Contents from the list area.
 ``` markdown
 [Title](front_matter.md)
-* [Part 1](part1)
-  * [Chapter 1](chapter1.md)
-  * [Chapter 2](chapter2.md)
-* [Part 2](part2)    
-    * [Chapter 1](chapter1.md)    
-    * [Chapter 2](chapter2.md)
+* [Part 1]()
+  * [Chapter 1](part1/chapter1.md)
+  * [Chapter 2](part1/chapter2.md)
+* [Part 2](part2/intro.md)    
+    * [Chapter 1](part2/chapter1.md)    
+    * [Chapter 2](part2/chapter2.md)
 * [Epilogue](epilogue.md)
 * [Glossary](glossary.md)
 [OptionalEndingText](end_matter.md)
@@ -60,9 +61,9 @@ Expected Output:
 * Part 1
   * Chapter 1
   * Chapter 2
-* Part 2   
-    * Chapter 1    
-    * Chapter 2
+* Part 2
+  * Chapter 1    
+  * Chapter 2
 * Epilogue
 * Glossary
 ## Part 1
@@ -71,6 +72,7 @@ Expected Output:
 ### Chapter 2
 - Chapter 2 content...
 ## Part 2
+- part 2 intro text...
 ### Chapter 1
 - Chapter 1 content...
 ### Chapter 2

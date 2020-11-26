@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Text;
 
 namespace markdown_composer.Models
 {
@@ -8,29 +9,36 @@ namespace markdown_composer.Models
         public string MarkdownText { get => GetMarkdownText(); }
         public bool IsTocCompatible { get; set; }
 
-        private string _headingName, _link;
+        public string HeadingName { get; }
+        private string _link;
         private int _level;
 
         public LinkLine(string headingName, string link, bool isTocCompatible, int level=0)
         {
-            _headingName = headingName;
+            HeadingName = headingName;
             _link = link;
             IsTocCompatible = isTocCompatible; // used for telling if this link should be mentioned in the table of contents
             _level = level; // used for figuring out how many '#'s to have in heading
         }
         private string GetMarkdownText()
         {
-            if(File.Exists(_link))
+            try
             {
-                // TODO: get markdown text from file
+                var builder = new StringBuilder();
+                for(int i = 0; i < _level; ++i){ builder.Append('#'); }
+                builder.Append($" {HeadingName}\n");
+
+                using (var fs = new FileStream(_link, FileMode.Open, FileAccess.Read))
+                using (var sr = new StreamReader(fs))
+                {
+                    builder.Append(sr.ReadToEnd());
+                }
+                return builder.ToString();
             }
-            else if(Directory.Exists(_link))
+            catch(FileNotFoundException)
             {
-                // TODO: perform sub-directory composition
-            }
-            else
-            {
-                Console.Error.WriteLine($"Error! Cannot find link: {_link}");
+                Console.Error.WriteLine($"Error! Cannot find file: {_link}");
+                return string.Empty;
             }
         }
     }
