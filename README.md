@@ -21,42 +21,66 @@ So I'm a software dev. I'm rather scatterbrained and need help keeping my s--t i
 Enter Markdown Composer, a simple little console application that can assemble all your markdown files into one.
 
 ## Simple Example
-Use a SUMMARY.md, GitBook style.
+Use a SUMMARY.md, sort of like GitBook.
 Example File Tree:
+``` markdown
 - root/
+  - front_matter.md
   - part1/
     - chapter1.md
     - chapter2.md
   - part2/
+    - intro.md
     - chapter1.md
     - chapter2.md
-  - final_chapter.md
+  - epilogue.md
+  - glossary.md
+  - end_matter.md
   - SUMMARY.md
-
-Example Project Root SUMMARY.md
-``` markdown
-# Summary
-* [Part 1](part1)
-  * [Chapter 1](chapter1.md)
-  * [Chapter 2](chapter2.md)
-* [Part 2](part2)    
-    * [Chapter 1](chapter1.md)    
-    * [Chapter 2](chapter2.md)
-* [Final Chapter](final_chapter.md)
 ```
+Example Project Root SUMMARY.md
+When run with the --toc option, Markdown Composer will generate a Table of Contents from the list area.
+``` markdown
+[Title](front_matter.md)
+* [Part 1]()
+  * [Chapter 1](part1/chapter1.md)
+  * [Chapter 2](part1/chapter2.md)
+* [Part 2](part2/intro.md)    
+    * [Chapter 1](part2/chapter1.md)    
+    * [Chapter 2](part2/chapter2.md)
+* [Epilogue](epilogue.md)
+* [Glossary](glossary.md)
+[OptionalEndingText](end_matter.md)
+```
+
 Expected Output:
 ``` markdown
-# Summary
+# Title
+- front matter...
+## Table of Contents
+* Part 1
+  * Chapter 1
+  * Chapter 2
+* Part 2
+  * Chapter 1    
+  * Chapter 2
+* Epilogue
+* Glossary
 ## Part 1
 ### Chapter 1
 - Chapter 1 content...
 ### Chapter 2
 - Chapter 2 content...
 ## Part 2
+- part 2 intro text...
 ### Chapter 1
 - Chapter 1 content...
 ### Chapter 2
 - Chapter 2 content...
-## Final Chapter
-- Final chapter content...
+## Epilogue
+- Epilogue content...
+## Glossary
+- glossary content...
+# Optional Ending text
+- end matter...
 ```
