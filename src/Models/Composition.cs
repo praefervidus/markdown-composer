@@ -18,7 +18,7 @@ namespace markdown_composer.Models
                 var tocBuilder = new TableOfContentsBuilder();
                 for(int i = 0; i < Lines.Length; ++i)
                 {
-                    if(Lines[i] is LinkLine) tocBuilder.AddLine((LinkLine)Lines[i]);
+                    if(Lines[i] is LinkLine line) tocBuilder.AddLine(line);
                 }
                 builder.Append(tocBuilder.MarkdownText);
                 builder.Append(Separator);
