@@ -14,11 +14,11 @@ namespace markdown_composer.Models
             if(match.Success && match.Groups.Count == 4)
             {
                 var listCharacters = new char[]{'+', '-', '*'};
-                var beforeText = match.Groups[0].ToString();
+                var beforeText = match.Groups[1].ToString();
                 bool isTocCompatible = beforeText.Count((character) => listCharacters.Contains(character)) > 0;
                 var indendation = beforeText.Count((character) => character == '\t');
-                var headingText = match.Groups[1].ToString();
-                var linkText = match.Groups[2].ToString();
+                var headingText = match.Groups[2].ToString();
+                var linkText = match.Groups[3].ToString();
                 _line = new LinkLine(headingText, linkText, isTocCompatible, indendation);
             }
             else{

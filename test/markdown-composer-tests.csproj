@@ -24,4 +24,8 @@
     <ProjectReference Include="..\src\markdown-composer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="resources\linkLineTests.md" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>
