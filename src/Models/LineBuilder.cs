@@ -5,13 +5,13 @@ namespace markdown_composer.Models
 {
     public class LineBuilder
     {
-        private const string Pattern = @"^(.*)\[(.+)\]\((.+)\)";
+        private const string Pattern = @"(.*)\[(.+)\]\((.+)\)";
         public ILine Line { get => _line; }
         private ILine _line;
         public LineBuilder FromUnParsedLine(string text)
         {
             var match = new Regex(Pattern).Match(text);
-            if(match.Success && match.Groups.Count == 3)
+            if(match.Success && match.Groups.Count == 4)
             {
                 var listCharacters = new char[]{'+', '-', '*'};
                 var beforeText = match.Groups[0].ToString();
