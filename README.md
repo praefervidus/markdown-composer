@@ -13,14 +13,14 @@ You'll have a single complete Markdown file which you can then transform however
 So I'm a software dev. I'm rather scatterbrained and need help keeping my s--t in order. I'm also a hobbyist sci-fi writer too.
 - Scrivener is the bee's knees!
   - stellar for composing a complete manuscript
-  - But it's a bit of a hassle to integrate with Git and I just don't enjoy writing in it.
+  - But it's a bit of a hassle to integrate with Git and I just don't enjoy writing in it (at least on Windows atm).
 - Visual Studio Code is awesome!
   - I love writing Markdown in that and there are extensions for natural language grammar checking.
   - But if I want to write with a Scrivener-like project structure then there's going to be some tediousness in putting together all those markdown files into one nice manuscript.
 
 Enter Markdown Composer, a simple little console application that can assemble all your markdown files into one.
 
-## Simple Example
+## Basic Idea through a Simple Example
 Use a SUMMARY.md, sort of like GitBook.
 Example File Tree:
 ``` markdown

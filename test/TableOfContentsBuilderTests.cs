@@ -16,7 +16,7 @@ namespace markdown_composer.Tests
         }
 
         [Fact]
-        public void NaiveTest()
+        public void VerifyCorrectTocMade()
         {
             GivenLines(new ILine[]
             {
@@ -31,6 +31,25 @@ namespace markdown_composer.Tests
             WhenBuilderIsRun();
             ThenOutputIs(
                 "## Table of Contents\r\n* Part 1\r\n\t* Chapter 1\r\n\t\t* Scene 1\r\n\t* Chapter 2\r\n* Part 2\r\n\t* Chapter 1\r\n\t* Chapter 2\r\n"
+            );
+        }
+
+        [Fact]
+        public void VerifyNonTocFiltered()
+        {
+            GivenLines(new ILine[]
+            {
+                new LinkLine("Part 1", "", true, 0),
+                new LinkLine("Chapter 1", "", true, 1),
+                new LinkLine("Scene 1", "", false, 2),
+                new LinkLine("Chapter 2", "", true, 1),
+                new LinkLine("Part 2", "", true, 0),
+                new LinkLine("Chapter 1", "", true, 1),
+                new LinkLine("Chapter 2", "", false, 1)
+            });
+            WhenBuilderIsRun();
+            ThenOutputIs(
+                "## Table of Contents\r\n* Part 1\r\n\t* Chapter 1\r\n\t* Chapter 2\r\n* Part 2\r\n\t* Chapter 1\r\n"
             );
         }
 
