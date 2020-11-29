@@ -14,10 +14,10 @@ namespace markdown_composer.Tests
         [Fact]
         public void VerifyLinkMarkdownIsCorrect()
         {
-            GivenLine(new LinkLine("TestTitle", "resources/linkLineTests.md", true, 0));
+            GivenLine(new LinkLine("resources","TestTitle", "linkLineTests.md", true, 0));
             WhenLineIsGrabbed();
             ThenOutputIsEqualTo(
-                "# TestTitle\n## My Life For Auir\r\n- Have you ever played StarCraft 2?\r\nI loved playing SC1 when I was a child. RTS games are fun!"
+                "# TestTitle\r\n## My Life For Auir\r\n- Have you ever played StarCraft 2?\r\nI loved playing SC1 when I was a child. RTS games are fun!"
             );
         }
         private void GivenLine(LinkLine line)

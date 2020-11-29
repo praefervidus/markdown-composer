@@ -13,12 +13,12 @@ namespace markdown_composer
 
         private static void ComposeGivenRootFolder(string rootFolder, bool makeToc = false)
         {
-            using var fs = new FileStream($"{rootFolder}/{DefaultWritePath}", FileMode.OpenOrCreate, FileAccess.Write);
+            using var fs = new FileStream(DefaultWritePath, FileMode.OpenOrCreate, FileAccess.Write);
             using var sw = new StreamWriter(fs);
             sw.Write(
-                new CompositionBuilder(makeToc)
-                .FromReferenceFile($"{rootFolder}/{ReferenceFileName}")
-                .Composition.GetMarkdownString()
+                new CompositionBuilder(rootFolder, makeToc)
+                .FromReferenceFile(ReferenceFileName)
+                .Composition.MarkdownText
             );
         }
         private static void Main(string[] args) // args[0] = project root folder

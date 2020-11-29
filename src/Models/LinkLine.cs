@@ -8,13 +8,14 @@ namespace markdown_composer.Models
     {
         public string MarkdownText { get => GetMarkdownText(); }
         public bool IsTocCompatible { get; set; }
-
+        public string ProjectPath { get; }
         public string HeadingName { get; }
         public string Link { get; }
         public int Level { get; }
 
-        public LinkLine(string headingName, string link, bool isTocCompatible, int level=0)
+        public LinkLine(string projectPath, string headingName, string link, bool isTocCompatible, int level=0)
         {
+            ProjectPath = projectPath;
             HeadingName = headingName;
             Link = link;
             IsTocCompatible = isTocCompatible; // used for telling if this link should be mentioned in the table of contents
@@ -26,9 +27,9 @@ namespace markdown_composer.Models
             {
                 var builder = new StringBuilder();
                 for(int i = 0; i <= Level; ++i){ builder.Append('#'); }
-                builder.Append(' ').Append(HeadingName).Append('\n');
+                builder.Append(' ').Append(HeadingName).Append("\r\n");
 
-                using (var fs = new FileStream(Link, FileMode.Open, FileAccess.Read))
+                using (var fs = new FileStream($"{ProjectPath}/{Link}", FileMode.Open, FileAccess.Read))
                 using (var sr = new StreamReader(fs))
                 {
                     builder.Append(sr.ReadToEnd());
