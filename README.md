@@ -123,3 +123,4 @@ lorem ipsum ...
 
 ... lorem ipsum
 ```
+This way, you can run a tool like *pandoc* on that composed file and it will still be able to parse your links.
