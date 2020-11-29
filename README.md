@@ -39,21 +39,21 @@ Example File Tree:
   - SUMMARY.md
 ```
 Example Project Root SUMMARY.md:
-Tabs are used to denote a section that should have a header with more '#'s.
-A '*' denotes anything that should be used in the Table of Contents.
+A '*' denotes anything that should be used in the Table of Contents, and the number of '*'s denote it's indentation level.
+Sections with higher indentation levels will have headings with more '#'s.
 ``` markdown
 [Title](front_matter.md)
 * [Part 1]()
-  * [Chapter 1](part1/chapter1.md)
-  * [Chapter 2](part1/chapter2.md)
+* * [Chapter 1](part1/chapter1.md)
+* * [Chapter 2](part1/chapter2.md)
 * [Part 2](part2/intro.md)    
-  * [Chapter 1](part2/chapter1.md)    
-  * [Chapter 2](part2/chapter2.md)
+* * [Chapter 1](part2/chapter1.md)    
+* * [Chapter 2](part2/chapter2.md)
 * [Epilogue](epilogue.md)
 * [Glossary](glossary.md)
 [OptionalEndingText](end_matter.md)
 ```
-Any link not given a '*' is given a level one heading automatically (heading with one '#').
+Any link not given a '*' is given a level one heading automatically (heading with one '#'). These aren't included in the Table of Contents.
 When run with the --toc option, Markdown Composer will generate a Table of Contents from the list area.
 Expected Output:
 ``` markdown
@@ -68,7 +68,9 @@ front matter...
   * Chapter 2
 * Epilogue
 * Glossary
+
 ## Part 1
+
 ### Chapter 1
 Chapter 1 content...
 ### Chapter 2

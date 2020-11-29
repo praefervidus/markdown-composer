@@ -12,15 +12,17 @@ namespace markdown_composer.Tests
         private const string ExpectedWithToc = @"# Title
 front matter...
 ## Table of Contents
-* Part 1
-    * Chapter 1
-    * Chapter 2
-* Part 2
-    * Chapter 1
-    * Chapter 2
-* Epilogue
-* Glossary
+	* Part 1
+		* Chapter 1
+		* Chapter 2
+	* Part 2
+		* Chapter 1
+		* Chapter 2
+	* Epilogue
+	* Glossary
+
 ## Part 1
+
 ### Chapter 1
 Chapter 1 content...
 ### Chapter 2
@@ -36,10 +38,12 @@ Epilogue content...
 ## Glossary
 glossary content...
 # OptionalEndingText
-end matter...";
+end matter...
+";
         private const string ExpectedWithoutToc = @"# Title
 front matter...
 ## Part 1
+
 ### Chapter 1
 Chapter 1 content...
 ### Chapter 2
@@ -55,7 +59,8 @@ Epilogue content...
 ## Glossary
 glossary content...
 # OptionalEndingText
-end matter...";
+end matter...
+";
         public CompositionTests()
         {
             _builder = new CompositionBuilder(ProjectPath);
@@ -89,7 +94,7 @@ end matter...";
         }
         private void WhenBuilderIsRun()
         {
-            const string path = "resources/composition-tests/SUMMARY.md";
+            const string path = "SUMMARY.md";
             _builder
                 .SetSeparator("\r\n")
                 .FromReferenceFile(path);

@@ -22,7 +22,7 @@ namespace markdown_composer.Tests
         [Fact]
         public void ParseLinkCorrectly()
         {
-            const string test = "\t\t* [Grinder](Sandwich)";
+            const string test = "* * [Grinder](Sandwich)";
             WhenBuilderParses(test);
             ThenLineIsLink();
             ThenLinkLineIsParsedCorrectly("Grinder","Sandwich", 2, true);

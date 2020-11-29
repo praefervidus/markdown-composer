@@ -23,24 +23,23 @@ namespace markdown_composer.Models
         }
         private string GetMarkdownText()
         {
-            try
+            var builder = new StringBuilder();
+            for(int i = 0; i <= Level; ++i){ builder.Append('#'); }
+            builder.Append(' ').Append(HeadingName).Append("\r\n");
+            if(Link != string.Empty)
             {
-                var builder = new StringBuilder();
-                for(int i = 0; i <= Level; ++i){ builder.Append('#'); }
-                builder.Append(' ').Append(HeadingName).Append("\r\n");
-
-                using (var fs = new FileStream($"{ProjectPath}/{Link}", FileMode.Open, FileAccess.Read))
-                using (var sr = new StreamReader(fs))
+                try
                 {
+                    using var fs = new FileStream($"{ProjectPath}/{Link}", FileMode.Open, FileAccess.Read);
+                    using var sr = new StreamReader(fs);
                     builder.Append(sr.ReadToEnd());
                 }
-                return builder.ToString();
+                catch(FileNotFoundException)
+                {
+                    Console.Error.WriteLine($"Error! Cannot find file: {Link}");
+                }
             }
-            catch(FileNotFoundException)
-            {
-                Console.Error.WriteLine($"Error! Cannot find file: {Link}");
-                return string.Empty;
-            }
+            return builder.ToString();
         }
     }
 }

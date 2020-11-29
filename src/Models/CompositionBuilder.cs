@@ -28,7 +28,7 @@ namespace markdown_composer.Models
         }
         public CompositionBuilder FromReferenceFile(string path)
         {
-            using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+            using (var fs = new FileStream($"{ProjectPath}/{path}", FileMode.Open, FileAccess.Read))
             using (var sr = new StreamReader(fs))
             {
                 while(!sr.EndOfStream)

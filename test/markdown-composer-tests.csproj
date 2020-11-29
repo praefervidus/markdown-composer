@@ -27,6 +27,7 @@
   <ItemGroup>
     <Content Include="resources\*.md" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="resources\composition-tests\*.md" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="resources\composition-tests\**\*.md" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>
