@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "markdown-composer", "markdown-composer.csproj", "{5449D014-CB4D-41AB-927F-21AB4D4B2351}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "markdown-composer", "src\markdown-composer.csproj", "{5449D014-CB4D-41AB-927F-21AB4D4B2351}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "markdown-composer-tests", "tests\markdown-composer-tests.csproj", "{437789B9-E66A-486A-93B2-42791EB52611}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "markdown-composer-tests", "test\markdown-composer-tests.csproj", "{437789B9-E66A-486A-93B2-42791EB52611}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

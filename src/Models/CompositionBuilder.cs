@@ -16,15 +16,19 @@ namespace markdown_composer.Models
         }
         private readonly List<ILine> _lines = new List<ILine>();
         private string _separator = Composition.DefaultSeparator;
-        private readonly bool _makeToc;
+        private bool _makeToc;
+        public string ProjectPath { get; } = string.Empty;
+        private readonly LineBuilder _lineBuilder;
 
-        public CompositionBuilder(bool makeToc = false)
+        public CompositionBuilder(string projectPath, bool makeToc = false)
         {
+            ProjectPath = projectPath;
             _makeToc = makeToc;
+            _lineBuilder = new LineBuilder(projectPath);
         }
         public CompositionBuilder FromReferenceFile(string path)
         {
-            using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+            using (var fs = new FileStream($"{ProjectPath}/{path}", FileMode.Open, FileAccess.Read))
             using (var sr = new StreamReader(fs))
             {
                 while(!sr.EndOfStream)
@@ -32,6 +36,11 @@ namespace markdown_composer.Models
                     AddLine(sr.ReadLine());
                 }
             }
+            return this;
+        }
+        public CompositionBuilder ShouldMakeToc(bool makeToc)
+        {
+            _makeToc = makeToc;
             return this;
         }
         public CompositionBuilder SetSeparator(string separator)
@@ -46,10 +55,7 @@ namespace markdown_composer.Models
         }
         public CompositionBuilder AddLine(string unparsedText)
         {
-            var line = new LineBuilder()
-                .FromUnParsedLine(unparsedText)
-                .Line;
-            return AddLine(line);
+            return AddLine(_lineBuilder.FromUnParsedLine(unparsedText).Line);
         }
     }
 }

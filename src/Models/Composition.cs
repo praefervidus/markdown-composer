@@ -3,16 +3,20 @@ using System.Text;
 
 namespace markdown_composer.Models
 {
-    public class Composition
+    public class Composition : ILine
     {
         public static readonly string DefaultSeparator = "\n---\n";
         public ILine[] Lines { get; set; }
         public string Separator { get; set; } = DefaultSeparator;
         public bool ShouldMakeToc { get; set; }
 
+        public string MarkdownText { get => GetMarkdownString(); }
+
         public string GetMarkdownString()
         {
+            if(Lines.Length < 1) return string.Empty;
             var builder = new StringBuilder();
+            builder.Append(Lines[0].MarkdownText).Append(Separator);
             if(ShouldMakeToc)
             {
                 var tocBuilder = new TableOfContentsBuilder();
@@ -23,9 +27,10 @@ namespace markdown_composer.Models
                 builder.Append(tocBuilder.MarkdownText);
                 builder.Append(Separator);
             }
-            builder.Append(Lines?.Select((line) => line.MarkdownText)
-                .Aggregate((sum, next) => sum + Separator + next)
-                ?? string.Empty);
+            for(int i = 1; i < Lines.Length; ++i)
+            {
+                builder.Append(Lines[i].MarkdownText).Append(Separator);
+            }
             return builder.ToString();
         }
     }
