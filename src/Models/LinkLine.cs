@@ -25,7 +25,7 @@ namespace markdown_composer.Models
         {
             var builder = new StringBuilder();
             for(int i = 0; i <= Level; ++i){ builder.Append('#'); }
-            builder.Append(' ').Append(HeadingName).Append("\r\n");
+            builder.Append(' ').AppendLine(HeadingName);
             if(Link != string.Empty)
             {
                 try

@@ -24,13 +24,11 @@ namespace markdown_composer.Tests
                 new LinkLine("", "Chapter 1", "", true, 1),
                 new LinkLine("", "Scene 1", "", true, 2),
                 new LinkLine("", "Chapter 2", "", true, 1),
-                new LinkLine("", "Part 2", "", true, 0),
-                new LinkLine("", "Chapter 1", "", true, 1),
-                new LinkLine("", "Chapter 2", "", true, 1)
+                new LinkLine("", "Part 2", "", true, 0)
             });
             WhenBuilderIsRun();
             ThenOutputIs(
-                "## Table of Contents\r\n* Part 1\r\n\t* Chapter 1\r\n\t\t* Scene 1\r\n\t* Chapter 2\r\n* Part 2\r\n\t* Chapter 1\r\n\t* Chapter 2\r\n"
+                $"## Table of Contents{Environment.NewLine}* Part 1{Environment.NewLine}\t* Chapter 1{Environment.NewLine}\t\t* Scene 1{Environment.NewLine}\t* Chapter 2{Environment.NewLine}* Part 2{Environment.NewLine}"
             );
         }
 
@@ -43,13 +41,11 @@ namespace markdown_composer.Tests
                 new LinkLine("", "Chapter 1", "", true, 1),
                 new LinkLine("", "Scene 1", "", false, 2),
                 new LinkLine("", "Chapter 2", "", true, 1),
-                new LinkLine("", "Part 2", "", true, 0),
-                new LinkLine("", "Chapter 1", "", true, 1),
-                new LinkLine("", "Chapter 2", "", false, 1)
+                new LinkLine("", "Part 2", "", true, 0)
             });
             WhenBuilderIsRun();
             ThenOutputIs(
-                "## Table of Contents\r\n* Part 1\r\n\t* Chapter 1\r\n\t* Chapter 2\r\n* Part 2\r\n\t* Chapter 1\r\n"
+                $"## Table of Contents{Environment.NewLine}* Part 1{Environment.NewLine}\t* Chapter 1{Environment.NewLine}\t* Chapter 2{Environment.NewLine}* Part 2{Environment.NewLine}"
             );
         }
 

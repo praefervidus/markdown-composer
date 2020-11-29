@@ -1,11 +1,10 @@
-using System.Linq;
 using System.Text;
 
 namespace markdown_composer.Models
 {
     public class Composition : ILine
     {
-        public static readonly string DefaultSeparator = "\n---\n";
+        public static readonly string DefaultSeparator = $"{System.Environment.NewLine}---{System.Environment.NewLine}";
         public ILine[] Lines { get; set; }
         public string Separator { get; set; } = DefaultSeparator;
         public bool ShouldMakeToc { get; set; }

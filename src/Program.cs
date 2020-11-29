@@ -5,7 +5,7 @@ using markdown_composer.Models;
 
 namespace markdown_composer
 {
-    internal static class Program
+    public static class Program
     {
         public static readonly string ReferenceFileName = "SUMMARY.md";
         public static readonly string DefaultWritePath = "composition.md";
