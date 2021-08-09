@@ -22,8 +22,8 @@ Example File Tree:
   - end_matter.md
   - SUMMARY.md
 ```
-Example Project Root SUMMARY.md:
-A '*' denotes anything that should be used in the Table of Contents, and the number of '*'s denote it's indentation level.
+### Example Project Root SUMMARY.md:
+An asterisk denotes anything that should be used in the Table of Contents, and the number of asterisks denote it's indentation level.
 Sections with higher indentation levels will have headings with more '#'s.
 ``` markdown
 [Title](front_matter.md)
@@ -37,8 +37,8 @@ Sections with higher indentation levels will have headings with more '#'s.
 * [Glossary](glossary.md)
 [OptionalEndingText](end_matter.md)
 ```
-Any link not given a '*' is given a level one heading automatically (heading with one '#'). These aren't included in the Table of Contents.
-When run with the --toc option, Markdown Composer will generate a Table of Contents from the list area.
+Any link not given an asterisk is given a level one heading automatically (heading with one '#'). These aren't included in the Table of Contents.
+When run with the *--toc* option, Markdown Composer will generate a Table of Contents from the list area.
 Expected Output:
 ``` markdown
 # Title
@@ -72,7 +72,7 @@ glossary content...
 # OptionalEndingText
 end matter...
 ```
-# Important Note on Links:
+## Important Note on Links:
 If you have a link in your text that is not your SUMMARY.md file, (usually in my case it's to a photo or something) like so:
 ``` markdown
 // root/part1/chapter3/scene3-grandpa-buys-me-lollipop.md
@@ -83,8 +83,8 @@ random text...
 ```
 When you run markdown-composer, that link is ***preserved as is***. So this means that your new composed file now has mismatched links because your scaryphoto.jpg was in your chapter folder, but your composed file is in your root folder .
 
-## The Workaround
-To fix this, I recommend a root-level resource file you keep as you're writing.
+### The Workaround
+To fix this, I recommend a root-level resources folder you keep as you're writing.
 ``` markdown
 - composed-output-v1.md
 - composed-output-v2.md
